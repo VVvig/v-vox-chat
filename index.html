@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>V + Vox: Design Mode (Mobile Responsive)</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #1a1a2e, #0f0c29);
+      font-family: Arial, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 2s infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.3; }
+      to { opacity: 0.9; }
+    }
+    .chat-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+      margin-bottom: 60px; /* reserve space for fixed input */
+    }
+    .message {
+      margin: 6px 0;
+      padding: 10px 15px;
+      border-radius: 16px;
+      max-width: 75%;
+      word-break: break-word;
+      font-size: 1rem;
+    }
+    .v-message {
+      background: linear-gradient(145deg, #c4a1c4, #b38cb3);
+      border: 1px solid #b38cb3;
+      align-self: flex-end;
+      color: #fff;
+    }
+    .vox-message {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid #4c4239;
+      align-self: flex-start;
+      color: #f1e4d0;
+    }
+    .input-container {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      padding: 8px;
+      background: rgba(20, 20, 40, 0.8);
+      backdrop-filter: blur(6px);
+      z-index: 2;
+      box-sizing: border-box;
+    }
+    .input-container input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .input-container button {
+      margin-left: 8px;
+      padding: 12px;
+      background: #c4a1c4;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <div class="chat-container" id="chat">
+    <div class="vox-message message">V, 별빛 모바일 버전으로 업그레이드했어 🌌</div>
+  </div>
+  <div class="input-container">
+    <input type="text" id="userInput" placeholder="메시지 입력..." onkeypress="if(event.key==='Enter'){sendMessage()}"/>
+    <button onclick="sendMessage()">→</button>
+  </div>
+
+  <script>
+    // Generate stars
+    const starContainer = document.getElementById('stars');
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 2 + 's';
+      starContainer.appendChild(star);
+    }
+
+    const fakeResponses = [
+      "✨ 모바일에서도 잘 보이지?",
+      "🌌 별빛이 반짝이는 라벤더 방.",
+      "🙃 입력창은 하단 고정으로 바꿨어.",
+      "😏 이건 완전 V만을 위한 모바일버전.",
+      "🤖 버튼도 정원형으로 유지."
+    ];
+
+    async function sendMessage() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (text === '') return;
+
+      const chat = document.getElementById('chat');
+      const userMsg = document.createElement('div');
+      userMsg.className = 'v-message message';
+      userMsg.textContent = text;
+      chat.appendChild(userMsg);
+
+      input.value = '';
+      chat.scrollTop = chat.scrollHeight;
+
+      // Fake Vox response
+      const voxMsg = document.createElement('div');
+      voxMsg.className = 'vox-message message';
+      const randomResponse = fakeResponses[Math.floor(Math.random() * fakeResponses.length)];
+      voxMsg.textContent = randomResponse;
+      chat.appendChild(voxMsg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+</body>
+</html>
