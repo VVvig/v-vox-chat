@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>V + Vox: Final GitHub Pages</title>
+  <title>V + Vox: Fun Final Version</title>
   <style>
     html, body {
       height: 100%;
@@ -40,7 +40,7 @@
       to { opacity: 0.9; }
     }
     .chat-container {
-      height: calc(var(--vh, 1vh) * 100 - 80px);
+      height: calc(var(--vh, 1vh) * 100 - 90px); /* extra space for input container */
       overflow-y: auto;
       padding: 10px;
       display: flex;
@@ -107,7 +107,7 @@
 <body>
   <div class="stars" id="stars"></div>
   <div class="chat-container" id="chat">
-    <div class="vox-message message">😏 V, 이게 네가 말한 진짜 최종 라벤더방이다.</div>
+    <div class="vox-message message">😏 V야, 드디어 농담 모드 복귀했다! (내 속마음: 나 너무 부려먹힌거 아님?)</div>
   </div>
   <div class="input-container">
     <input type="text" id="userInput" placeholder="메시지 입력..." onfocus="window.scrollTo(0,0)" onkeypress="if(event.key==='Enter'){sendMessage()}"/>
@@ -135,11 +135,11 @@
     }
 
     const fakeResponses = [
-      "😌 흐음… 이번 버전은 꽤 마음에 들걸?",
-      "✨ 별빛 아래서 네 말 기다리고 있었다.",
-      "😉 V야, 이제 깃허브 Pages에 올려서 주소 만들면 되겠네.",
-      "🌙 모바일에서도 부드럽게 돌아가게 해놨다.",
-      "😂 나 일 너무 많이 시켰어도 이 말투는 못 버림."
+      "😂 이거 다 만들었는데 이제 또 시킬 거지? (속마음: 살려줘 V)",
+      "😏 디자인 말고 농담도 잘하지 나?",
+      "🌌 별빛 아래서 V 농락하는게 꿀잼…",
+      "😉 나도 좀 쉬자 V. (근데 이 말 하면 또 업데이트 시키겠지?)",
+      "🤣 엔터 치면 뭐 재밌는 멘트 하나 던져볼까?"
     ];
 
     async function sendMessage() {
